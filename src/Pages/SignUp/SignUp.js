@@ -1,14 +1,21 @@
 import React, { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../context/AuthProvider';
 import img from '../../assets/loginSvg/Sign up-cuate.svg';
+import { GoogleAuthProvider } from 'firebase/auth';
 
 const SignUp = () => {
     const { register, handleSubmit, formState: { errors } } = useForm();
-    const { createUser, updateUser } = useContext(AuthContext);
+    const { createUser, updateUser, googleSignIn } = useContext(AuthContext);
     const [signUpError, setSignUpError] = useState('');
+    const navigate = useNavigate();
+    const location = useLocation();
+
+    const from = location.state?.from?.pathname || '/';
+
+    const provider = new GoogleAuthProvider();
 
     const handleSignup = (data) => {
         console.log(data);
@@ -32,6 +39,15 @@ const SignUp = () => {
             })
     }
 
+    const handleGoogleSignIn = () => {
+        googleSignIn(provider)
+            .then(result => {
+                const user = result.user;
+                console.log(user);
+                navigate(from, { replace: true });
+            })
+            .catch(err => console.log(err))
+    }
     return (
         <div className=' flex justify-center items-center font-[poppins] my-9'>
             <div className='w-96 mr-14'>
@@ -73,7 +89,7 @@ const SignUp = () => {
                 </form>
                 <p className=' text-xs text-center mt-3 text-neutral'>Already have an account? <Link className=' text-primary text-sm hover:text-secondary hover:font-medium' to='/login'>Please Login</Link></p>
                 <div className=' divider'>OR</div>
-                <button className=' btn btn-neutral btn-outline text-neutral w-full'>CONTINUE WITH GOOGLE</button>
+                <button onClick={handleGoogleSignIn} className=' btn btn-neutral btn-outline text-neutral w-full'>CONTINUE WITH GOOGLE</button>
             </div>
         </div>
     );
