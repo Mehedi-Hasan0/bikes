@@ -85,6 +85,16 @@ const SignUp = () => {
                         {errors.password && <p className=' text-red-400 text-xs my-2'>{errors.password?.message}</p>}
                         {signUpError && <p className=' text-red-400 text-xs my-2'>{signUpError.slice(22, -2)}</p>}
                     </div>
+                    <div className=' form-control w-full max-w-xs text-black mt-3'>
+                        <label className='label'><span className=' label-text text-neutral'>Choose account type</span></label>
+                        <select className="select select-bordered w-full max-w-xs"
+                            {...register('role', { required: ' Choose at least one type' })}
+                        >
+                            <option selected>Buyer</option>
+                            <option>Seller</option>
+                        </select>
+                        {errors.role && <p className=' text-red-400 text-xs'>{errors.role?.message}</p>}
+                    </div>
                     <input type='submit' className='btn btn-neutral w-full mt-4' value='sign up' />
                 </form>
                 <p className=' text-xs text-center mt-3 text-neutral'>Already have an account? <Link className=' text-primary text-sm hover:text-secondary hover:font-medium' to='/login'>Please Login</Link></p>
