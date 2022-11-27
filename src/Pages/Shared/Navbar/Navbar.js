@@ -31,8 +31,14 @@ const Navbar = () => {
                                 <li><Link>Suzuki</Link></li>
                             </ul>
                         </div>
-                        <Link to="/dashboard">Dashboard</Link>
                         <Link to="/blog">Blog</Link>
+                        {
+                            user?.email ?
+                                <Link to='/dashboard'>Dashboard</Link>
+                                :
+                                ''
+                        }
+                        <Link to="/contactUs">Contact Us</Link>
                     </div>
                     <div>
                         {
@@ -55,8 +61,14 @@ const Navbar = () => {
 
                                 <Link to='/'>Home</Link>
                                 <Link to="/category">Category</Link>
-                                <Link to="/dashboard">Dashboard</Link>
                                 <Link to="/blog">Blog</Link>
+                                {
+                                    user?.email ?
+                                        <Link to="/dashboard">Dashboard</Link>
+                                        :
+                                        ''
+                                }
+
                             </div>
                         </div>
                     </div>
