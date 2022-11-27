@@ -42,11 +42,11 @@ const Login = () => {
     }
 
     return (
-        <div className=' flex justify-center items-center font-[poppins] my-9'>
-            <div className='w-96 mr-14'>
+        <div className=' flex md:flex-row flex-col justify-center items-center font-[poppins] my-9 mx-3'>
+            <div className='md:w-96 w-80 md:mr-14'>
                 <img className='inline' src={img} alt="" />
             </div>
-            <div className=' p-8 shadow-lg md:w-96 w-80 rounded-xl'>
+            <div className=' p-8 shadow-lg md:max-w-96 max-w-80 rounded-xl'>
                 <h3 className=' text-xl text-black text-center'>Login</h3>
                 <form onSubmit={handleSubmit(handleLogin)}>
                     <div className=' form-control w-full max-w-xs text-black'>

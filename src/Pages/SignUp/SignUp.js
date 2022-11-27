@@ -66,11 +66,11 @@ const SignUp = () => {
             .catch(err => console.log(err))
     }
     return (
-        <div className=' flex justify-center items-center font-[poppins] my-9'>
-            <div className='w-96 mr-14'>
+        <div className=' flex md:flex-row flex-col justify-center items-center font-[poppins] my-9 mx-3'>
+            <div className='w-96 md:mr-14'>
                 <img className='inline' src={img} alt="" />
             </div>
-            <div className=' p-8 shadow-lg md:w-96 w-80 rounded-xl'>
+            <div className=' p-8 shadow-lg w-96 rounded-xl mt-8 sm:mt-0'>
                 <h3 className=' text-xl text-black text-center'>Sign Up</h3>
                 <form onSubmit={handleSubmit(handleSignup)}>
                     <div className=' form-control w-full max-w-xs text-black'>
