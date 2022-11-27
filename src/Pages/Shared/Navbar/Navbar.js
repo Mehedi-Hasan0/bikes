@@ -17,7 +17,7 @@ const Navbar = () => {
     }
 
     return (
-        <nav className=' shadow-md '>
+        <nav className='  '>
             <div className=' max-w-7xl mx-auto'>
                 <div className=' p-5 hidden lg:flex flex-row items-center justify-between'>
                     <p className=' font-[poppins] font-bold text-xl text-black'>Dream Bikes</p>
