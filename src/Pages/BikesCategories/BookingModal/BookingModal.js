@@ -25,6 +25,23 @@ const BookingModal = ({ bikeDetails, setBikesDetails }) => {
             Meeting_location: location
         }
         console.log(booking);
+        fetch('http://localhost:5000/bookings', {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(booking)
+        })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data);
+                if (data.acknowledged) {
+                    setBikesDetails(null);
+                    toast.success('Booking confirmed!');
+                } else {
+                    toast.error(data.message);
+                }
+            })
     }
 
 
