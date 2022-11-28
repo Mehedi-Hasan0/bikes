@@ -1,4 +1,3 @@
-import { useQuery } from '@tanstack/react-query';
 import React, { useContext, useEffect, useState } from 'react';
 import toast from 'react-hot-toast';
 import { AuthContext } from '../../../context/AuthProvider';
@@ -15,16 +14,7 @@ const MyProducts = () => {
                 console.log(data);
                 setAddedProducts(data)
             })
-    }, [])
-
-    // const { data: addedproducts = [] } = useQuery({
-    //     queryKey: ['addedproducts', user?.email],
-    //     queryFn: async () => {
-    //         const res = await fetch(url);
-    //         const data = await res.json();
-    //         return data;
-    //     }
-    // });
+    }, [url])
 
     const handlePromote = (bikes) => {
         const { bikeCondition, bikeName, category, location, originalPrice, phoneNumber, purchase, sellingPrice } = bikes;

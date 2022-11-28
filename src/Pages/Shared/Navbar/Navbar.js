@@ -30,15 +30,7 @@ const Navbar = () => {
                     <p className=' font-[poppins] font-bold text-xl text-black'>Dream Bikes</p>
                     <div className='flex justify-evenly w-[50%] font-[poppins] text-base text-black'>
                         <Link to="/">Home</Link>
-                        <div className="dropdown dropdown-hover">
-                            <label tabIndex={0}><Link to="/category">Category <img src={down} alt="" className=' inline w-5' /></Link></label>
-                            <ul tabIndex={0} className="dropdown-content menu p-2 shadow bg-base-100 rounded-box">
-                                <li><Link>Yamaha</Link></li>
-                                <li><Link>Honda</Link></li>
-                                <li><Link>Suzuki</Link></li>
-                            </ul>
-                        </div>
-                        <Link to="/blog">Blog</Link>
+                        <Link to="/blogs">Blog</Link>
                         {
                             user?.email ?
                                 <Link to='/dashboard'>Dashboard</Link>
@@ -69,7 +61,7 @@ const Navbar = () => {
 
                                 <Link to='/'>Home</Link>
                                 <Link to="/category">Category</Link>
-                                <Link to="/blog">Blog</Link>
+                                <Link to="/blogs">Blog</Link>
                                 <div className="dropdown dropdown-bottom">
                                     <label tabIndex={0}><Link>Dashboard</Link></label>
                                     <ul tabIndex={0} className="dropdown-content menu p-2 shadow bg-[#181818] rounded-box w-full text-center opacity-100">
