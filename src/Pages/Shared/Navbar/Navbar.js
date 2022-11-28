@@ -5,10 +5,17 @@ import menu from '../../../assets/menu.svg';
 import close from '../../../assets/close.svg';
 import down from '../../../assets/icons8-expand-arrow-30.png';
 import { AuthContext } from '../../../context/AuthProvider';
+import useAdmin from '../../../hook/useAdmin';
+import useBuyer from '../../../hook/useBuyer';
+import useSeller from '../../../hook/useSeller';
 
 const Navbar = () => {
     const { user, logOut } = useContext(AuthContext);
     const [toggle, setToggle] = useState(false);
+    const [isAdmin] = useAdmin(user?.email);
+    const [isBuyer] = useBuyer(user?.email);
+    const [isSeller] = useSeller(user?.email);
+
 
     const handleLogout = () => {
         logOut()
@@ -17,7 +24,7 @@ const Navbar = () => {
     }
 
     return (
-        <nav className='  '>
+        <nav className=' shadow-md '>
             <div className=' max-w-7xl mx-auto'>
                 <div className=' p-5 hidden lg:flex flex-row items-center justify-between'>
                     <p className=' font-[poppins] font-bold text-xl text-black'>Dream Bikes</p>
@@ -50,6 +57,7 @@ const Navbar = () => {
 
                     </div>
                 </div>
+                {/* mobile nav */}
                 <div className=' flex items-center justify-between lg:hidden p-5' >
                     <p className=' font-[poppins] font-medium text-xl text-black'>Doctors Portal</p>
                     <div>
@@ -62,13 +70,49 @@ const Navbar = () => {
                                 <Link to='/'>Home</Link>
                                 <Link to="/category">Category</Link>
                                 <Link to="/blog">Blog</Link>
-                                {
-                                    user?.email ?
-                                        <Link to="/dashboard">Dashboard</Link>
-                                        :
-                                        ''
-                                }
+                                <div className="dropdown dropdown-bottom">
+                                    <label tabIndex={0}><Link>Dashboard</Link></label>
+                                    <ul tabIndex={0} className="dropdown-content menu p-2 shadow bg-[#181818] rounded-box w-full text-center opacity-100">
+                                        {/* {
+                                            isAdmin && <>
+                                                <li><Link to='/dashboard/allUsers'>All Users</Link></li>
+                                            </>
+                                        }
+ */}
+                                        {
+                                            user?.emailVerified &&
+                                            <li><a>My Orders</a></li>
+                                        }
+                                        {
+                                            isBuyer && <>
+                                                <li><a>My Orders</a></li>
+                                            </>
+                                        }
+                                        {
+                                            isSeller && <>
+                                                <li><a>Add A Products</a></li>
+                                                <li><a>My Products</a></li>
+                                                <li><a>My Buyers</a></li>
+                                            </>
+                                        }
+                                        {
+                                            isAdmin && <>
+                                                <li><a>All Sellers</a></li>
+                                                <li><a>All Buyer</a></li>
+                                                <li><a>Reported Items</a></li>
+                                            </>
+                                        }
+                                    </ul>
+                                </div>
+                                <div>
+                                    {
+                                        user?.email ?
+                                            <Link to="/login"><button onClick={handleLogout} className='btn btn-md btn-outline font-[poppins] text-white'>Sign out</button></Link>
+                                            :
+                                            <Link to="/login"><button className='btn btn-md btn-outline font-[poppins] text-white'>Login</button></Link>
+                                    }
 
+                                </div>
                             </div>
                         </div>
                     </div>

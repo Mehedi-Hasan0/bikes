@@ -56,11 +56,12 @@ const SignUp = () => {
             })
     }
 
+
     const handleGoogleSignIn = () => {
         googleSignIn(provider)
             .then(result => {
                 const user = result.user;
-                console.log(user);
+                console.log('user', user);
                 navigate(from, { replace: true });
             })
             .catch(err => console.log(err))
