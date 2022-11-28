@@ -1,12 +1,16 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
-import { Link } from 'react-router-dom';
+import toast from 'react-hot-toast';
+import { Link, useNavigate } from 'react-router-dom';
 
 const AddAProduct = () => {
     const { register, handleSubmit, formState: { errors } } = useForm();
+    const navigate = useNavigate();
 
     const handleSubmitProducts = data => {
         console.log(data);
+        toast.success('Congratulations Products is added')
+        navigate('/dashboard/myproduct')
     }
     return (
         <div className=' py-10'>
@@ -26,7 +30,7 @@ const AddAProduct = () => {
                         <div className=' form-control w-full max-w-xs text-black'>
                             <label className='label'><span className=' label-text text-neutral'>Selling Price</span></label>
                             <input
-                                {...register('sellingPrice', { required: 'Price is required' })}
+                                {...register('sellingPrice', { required: 'Selling price is required' })}
                                 type="number"
                                 className='input input-bordered mb-2' />
                             {errors.sellingPrice && <p className=' text-red-400 text-xs'>{errors.sellingPrice?.message}</p>}
@@ -57,6 +61,33 @@ const AddAProduct = () => {
                                 type="text"
                                 className='input input-bordered mb-2' />
                             {errors.location && <p className=' text-red-400 text-xs'>{errors.location?.message}</p>}
+                        </div>
+                        <div className=' form-control w-full max-w-xs text-black mb-2'>
+                            <label className='label'><span className=' label-text text-neutral'>Product Category</span></label>
+                            <select className="select select-bordered w-full max-w-xs"
+                                {...register('category', { required: ' Choose at least one type' })}
+                            >
+                                <option selected>Yamaha</option>
+                                <option>Honda</option>
+                                <option>Suzuki</option>
+                            </select>
+                            {errors.category && <p className=' text-red-400 text-xs'>{errors.category?.message}</p>}
+                        </div>
+                        <div className=' form-control w-full max-w-xs text-black'>
+                            <label className='label'><span className=' label-text text-neutral'>Original Price</span></label>
+                            <input
+                                {...register('originalPrice', { required: 'This field is required' })}
+                                type="number"
+                                className='input input-bordered mb-2' />
+                            {errors.originalPrice && <p className=' text-red-400 text-xs'>{errors.originalPrice?.message}</p>}
+                        </div>
+                        <div className=' form-control w-full max-w-xs text-black'>
+                            <label className='label'><span className=' label-text text-neutral'>Years of Purchase</span></label>
+                            <input
+                                {...register('purchase', { required: 'This field is required' })}
+                                type="text"
+                                className='input input-bordered mb-2' />
+                            {errors.purchase && <p className=' text-red-400 text-xs'>{errors.purchase?.message}</p>}
                         </div>
                         <input type='submit' className='btn btn-neutral w-full mt-4' value='submit' />
                     </form>
