@@ -1,30 +1,86 @@
 import { useQuery } from '@tanstack/react-query';
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
+import toast from 'react-hot-toast';
 import { AuthContext } from '../../../context/AuthProvider';
 
 const MyProducts = () => {
     const { user } = useContext(AuthContext);
-
+    const [addedproducts, setAddedProducts] = useState([]);
     const url = `https://dream-bikes-server.vercel.app/dashboard/addedproducts?email=${user?.email}`
 
-    const { data: addedproducts = [] } = useQuery({
-        queryKey: ['addedproducts', user?.email],
-        queryFn: async () => {
-            const res = await fetch(url);
-            const data = await res.json();
-            return data;
+    useEffect(() => {
+        fetch(url)
+            .then(res => res.json())
+            .then(data => {
+                console.log(data);
+                setAddedProducts(data)
+            })
+    }, [])
+
+    // const { data: addedproducts = [] } = useQuery({
+    //     queryKey: ['addedproducts', user?.email],
+    //     queryFn: async () => {
+    //         const res = await fetch(url);
+    //         const data = await res.json();
+    //         return data;
+    //     }
+    // });
+
+    const handlePromote = (bikes) => {
+        const { bikeCondition, bikeName, category, location, originalPrice, phoneNumber, purchase, sellingPrice } = bikes;
+        const bikesData = {
+            bikeCondition,
+            bikeName,
+            category,
+            location,
+            originalPrice,
+            phoneNumber,
+            purchase,
+            sellingPrice
+        };
+        fetch('http://localhost:5000/dashboard/advertised', {
+            method: 'POST',
+            headers: {
+                'content-type': 'application.json'
+            },
+            body: JSON.stringify(bikesData)
+        })
+            .then(res => res.json())
+            .then(data => console.log(data));
+        toast.success('Bikes Promoted Successfully')
+    }
+
+    const handleDelete = _id => {
+        const proceed = window.confirm('Are you sure you want to delete');
+        if (proceed) {
+            fetch(`http://localhost:5000/dashboard/advertised/${_id}`, {
+                method: 'DELETE',
+            })
+                .then(res => res.json())
+                .then(data => {
+                    console.log(data)
+                    if (data.deletedCount > 0) {
+                        const remaining = addedproducts.filter(products => products._id !== _id);
+                        console.log(remaining);
+                    }
+                });
+            toast.success('Deleted Successfully')
+
         }
-    })
+    }
+
     return (
         <div className=' bg-[#E3FFE6] h-full'>
-            <div className="overflow-x-auto">
+            <div className="overflow-x-auto  pt-10">
                 <table className="table w-full text-center">
                     <thead>
                         <tr>
                             <th></th>
                             <th>Name</th>
                             <th>Selling Price</th>
-                            <th>Location</th>
+                            <th>Status</th>
+                            <th>Advertise</th>
+                            <th>Delete</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -35,7 +91,9 @@ const MyProducts = () => {
                                     <th>{i + 1}</th>
                                     <td>{bikes.data.bikeName}</td>
                                     <td>{bikes.data.sellingPrice}</td>
-                                    <td>{bikes.data.location}</td>
+                                    <td>Available</td>
+                                    <td><button onClick={() => handlePromote(bikes.data)} className='btn btn-primary btn-sm'>Promote</button></td>
+                                    <td><button onClick={() => handleDelete(bikes._id)} className='btn btn-sm'>Delete</button></td>
                                 </tr>
                             )
                         }

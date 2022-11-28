@@ -5,11 +5,9 @@ import Main from "../../Layout/Main";
 import BikesCategories from '../../Pages/BikesCategories/BikesCategories';
 import AllBuyers from '../../Pages/Dashboard/Admin/AllBuyers';
 import AllSellers from '../../Pages/Dashboard/Admin/AllSellers';
-import ReportedItems from '../../Pages/Dashboard/Admin/ReportedItems';
 import MyOrders from '../../Pages/Dashboard/Buyers/MyOrders';
 import Dashboard from '../../Pages/Dashboard/Dashboard/Dashboard';
 import AddAProduct from '../../Pages/Dashboard/Sellers/AddAProduct';
-import MyBuyers from '../../Pages/Dashboard/Sellers/MyBuyers';
 import MyProducts from '../../Pages/Dashboard/Sellers/MyProducts';
 import Home from '../../Pages/Home/Home/Home';
 import Login from '../../Pages/Login/Login';
@@ -42,7 +40,7 @@ const router = createBrowserRouter([
     },
     {
         path: '/dashboard',
-        element: <DashboardLayout />,
+        element: <PrivateRoute><DashboardLayout /></PrivateRoute>,
         children: [
             {
                 path: '/dashboard',
@@ -61,20 +59,12 @@ const router = createBrowserRouter([
                 element: <MyProducts />
             },
             {
-                path: '/dashboard/mybuyers',
-                element: <MyBuyers />
-            },
-            {
                 path: '/dashboard/allbuyers',
                 element: <AllBuyers />
             },
             {
                 path: '/dashboard/allsellers',
                 element: <AllSellers />
-            },
-            {
-                path: '/dashboard/reported',
-                element: <ReportedItems />
             },
         ]
     }
