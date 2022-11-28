@@ -71,7 +71,7 @@ const SignUp = () => {
             <div className='w-96 md:mr-14'>
                 <img className='inline' src={img} alt="" />
             </div>
-            <div className=' p-8 shadow-lg w-96 rounded-xl mt-8 sm:mt-0'>
+            <div className=' p-8 md:shadow-lg shadow-none w-96 rounded-xl mt-8 sm:mt-0'>
                 <h3 className=' text-xl text-black text-center'>Sign Up</h3>
                 <form onSubmit={handleSubmit(handleSignup)}>
                     <div className=' form-control w-full max-w-xs text-black'>

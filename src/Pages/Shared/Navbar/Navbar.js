@@ -59,7 +59,7 @@ const Navbar = () => {
                 </div>
                 {/* mobile nav */}
                 <div className=' flex items-center justify-between lg:hidden p-5' >
-                    <p className=' font-[poppins] font-medium text-xl text-black'>Doctors Portal</p>
+                    <p className=' font-[poppins] font-medium text-xl text-black'>Dream Bikes</p>
                     <div>
                         <img src={toggle ? close : menu} className=" w-6 h-6 object-contain" alt="" onClick={() => setToggle((previous) => !previous)} />
 
