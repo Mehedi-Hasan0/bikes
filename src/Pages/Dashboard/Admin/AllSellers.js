@@ -6,7 +6,7 @@ const AllSellers = () => {
     const [allSellers, setAllSellers] = useState([]);
 
     useEffect(() => {
-        fetch('http://localhost:5000/dashboard/users/sellers')
+        fetch('https://dream-bikes-server.vercel.app/dashboard/users/sellers')
             .then(res => res.json())
             .then(data => {
                 console.log(data)
@@ -15,18 +15,10 @@ const AllSellers = () => {
             )
     }, [])
 
-    // const { data: allSeller = [] } = useQuery({
-    //     queryKey: ['allSeller'],
-    //     queryFn: async () => {
-    //         const res = await fetch('http://localhost:5000/dashboard/users/sellers')
-    //         const data = await res.json();
-    //         return data;
-    //     }
-    // })
     const handleDelete = id => {
         const proceed = window.confirm('Are you sure you want to delete.')
         if (proceed) {
-            fetch(`http://localhost:5000/dashboard/users/sellers/${id}`, {
+            fetch(`https://dream-bikes-server.vercel.app/dashboard/users/sellers/${id}`, {
                 method: 'DELETE'
             })
                 .then(res => res.json())

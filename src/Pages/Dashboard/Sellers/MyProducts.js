@@ -38,7 +38,7 @@ const MyProducts = () => {
             purchase,
             sellingPrice
         };
-        fetch('http://localhost:5000/dashboard/advertised', {
+        fetch('https://dream-bikes-server.vercel.app/dashboard/advertised', {
             method: 'POST',
             headers: {
                 'content-type': 'application.json'
@@ -53,7 +53,7 @@ const MyProducts = () => {
     const handleDelete = _id => {
         const proceed = window.confirm('Are you sure you want to delete');
         if (proceed) {
-            fetch(`http://localhost:5000/dashboard/advertised/${_id}`, {
+            fetch(`http://localhttps://dream-bikes-server.vercel.app/dashboard/advertised/${_id}`, {
                 method: 'DELETE',
             })
                 .then(res => res.json())
