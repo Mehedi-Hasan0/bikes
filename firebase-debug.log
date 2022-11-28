@@ -1,0 +1,27 @@
+[debug] [2022-11-28T08:42:08.408Z] ----------------------------------------------------------------------
+[debug] [2022-11-28T08:42:08.411Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\Mahedi\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js deploy
+[debug] [2022-11-28T08:42:08.412Z] CLI Version:   11.16.0
+[debug] [2022-11-28T08:42:08.412Z] Platform:      win32
+[debug] [2022-11-28T08:42:08.412Z] Node Version:  v16.17.0
+[debug] [2022-11-28T08:42:08.496Z] Time:          Mon Nov 28 2022 14:42:08 GMT+0600 (Bangladesh Standard Time)
+[debug] [2022-11-28T08:42:08.497Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2022-11-28T08:42:08.610Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2022-11-28T08:42:08.611Z] > authorizing via signed-in user (mhmahedi000@gmail.com)
+[debug] [2022-11-28T08:42:08.611Z] [iam] checking project dream-bikes-2bbd5 for permissions ["firebase.projects.get","firebasehosting.sites.update"]
+[debug] [2022-11-28T08:42:08.615Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/dream-bikes-2bbd5:testIamPermissions [none]
+[debug] [2022-11-28T08:42:08.615Z] >>> [apiv2][(partial)header] POST https://cloudresourcemanager.googleapis.com/v1/projects/dream-bikes-2bbd5:testIamPermissions x-goog-quota-user=projects/dream-bikes-2bbd5
+[debug] [2022-11-28T08:42:08.615Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/dream-bikes-2bbd5:testIamPermissions {"permissions":["firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2022-11-28T08:42:10.328Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/dream-bikes-2bbd5:testIamPermissions 401
+[debug] [2022-11-28T08:42:10.328Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/dream-bikes-2bbd5:testIamPermissions {"error":{"code":401,"message":"Request had invalid authentication credentials. Expected OAuth 2 access token, login cookie or other valid authentication credential. See https://developers.google.com/identity/sign-in/web/devconsole-project.","status":"UNAUTHENTICATED","details":[{"@type":"type.googleapis.com/google.rpc.ErrorInfo","reason":"ACCESS_TOKEN_TYPE_UNSUPPORTED","metadata":{"method":"google.cloudresourcemanager.v1.Projects.TestIamPermissions","service":"cloudresourcemanager.googleapis.com"}}]}}
+[debug] [2022-11-28T08:42:10.331Z] [iam] error while checking permissions, command may fail: FirebaseError: HTTP Error: 401, Request had invalid authentication credentials. Expected OAuth 2 access token, login cookie or other valid authentication credential. See https://developers.google.com/identity/sign-in/web/devconsole-project.
+[debug] [2022-11-28T08:42:10.332Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/dream-bikes-2bbd5 [none]
+[debug] [2022-11-28T08:42:10.631Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/dream-bikes-2bbd5 401
+[debug] [2022-11-28T08:42:10.631Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/dream-bikes-2bbd5 {"error":{"code":401,"message":"Request had invalid authentication credentials. Expected OAuth 2 access token, login cookie or other valid authentication credential. See https://developers.google.com/identity/sign-in/web/devconsole-project.","status":"UNAUTHENTICATED"}}
+[debug] [2022-11-28T08:42:10.631Z] HTTP Error: 401, Request had invalid authentication credentials. Expected OAuth 2 access token, login cookie or other valid authentication credential. See https://developers.google.com/identity/sign-in/web/devconsole-project.
+[debug] [2022-11-28T08:42:10.881Z] FirebaseError: HTTP Error: 401, Request had invalid authentication credentials. Expected OAuth 2 access token, login cookie or other valid authentication credential. See https://developers.google.com/identity/sign-in/web/devconsole-project.
+    at responseToError (C:\Users\Mahedi\AppData\Roaming\npm\node_modules\firebase-tools\lib\responseToError.js:49:12)
+    at RetryOperation._fn (C:\Users\Mahedi\AppData\Roaming\npm\node_modules\firebase-tools\lib\apiv2.js:288:77)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+[error] 
+[error] Error: Failed to get Firebase project dream-bikes-2bbd5. Please make sure the project exists and your account has permission to access it.

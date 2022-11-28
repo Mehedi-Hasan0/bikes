@@ -17,7 +17,7 @@ const AddAProduct = () => {
         }
         toast.success('Congratulations Products is added');
 
-        fetch('http://localhost:5000/dashboard/addedproducts', {
+        fetch('https://dream-bikes-server.vercel.app/dashboard/addedproducts', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
