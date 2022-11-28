@@ -3,7 +3,6 @@ import './Navbar.css';
 import { Link } from 'react-router-dom';
 import menu from '../../../assets/menu.svg';
 import close from '../../../assets/close.svg';
-import down from '../../../assets/icons8-expand-arrow-30.png';
 import { AuthContext } from '../../../context/AuthProvider';
 import useAdmin from '../../../hook/useAdmin';
 import useBuyer from '../../../hook/useBuyer';

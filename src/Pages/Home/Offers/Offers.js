@@ -1,8 +1,17 @@
 import React from 'react';
+import { useForm } from 'react-hook-form';
+import toast from 'react-hot-toast';
 import bgImg from '../../../assets/bannerImage/bgImg2.jpg';
 import bike from '../../../assets/yamahaBikes/motorcycle-gf3f02aea9_1920-removebg-preview.png';
 
 const Offers = () => {
+    const { register, handleSubmit, formState: { errors } } = useForm();
+    const handleEmail = (data, e) => {
+        const form = e.target;
+        console.log(data);
+        toast.success('Thanks for joining us')
+        form.reset();
+    }
     return (
         <section
             style={{
@@ -31,8 +40,10 @@ const Offers = () => {
                                 <p>Best deals every week</p>
                             </div>
                         </div>
-                        <input type="email" placeholder="Enter your email here" className="input input-bordered input-md md:w-full w-[60%] max-w-xs rounded-r-none" />
-                        <button className="btn normal-case text-base ml-2 ">submit</button>
+                        <form onSubmit={handleSubmit(handleEmail)}>
+                            <input type="email" placeholder="Enter your email here" {...register('email', { required: 'Email is Required' })} className="input input-bordered input-md md:w-full w-[60%] max-w-xs rounded-r-none" />
+                            <button className="btn normal-case text-base ml-2 fixed ">submit</button>
+                        </form>
                     </div>
                 </div>
             </div>
