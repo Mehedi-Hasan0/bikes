@@ -25,7 +25,7 @@ const BookingModal = ({ bikeDetails, setBikesDetails }) => {
             Meeting_location: location
         }
         console.log(booking);
-        fetch('http://localhost:5000/bookings', {
+        fetch('https://dream-bikes-server.vercel.app/bookings', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'

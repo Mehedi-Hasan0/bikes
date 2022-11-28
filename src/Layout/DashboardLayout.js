@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { Outlet } from 'react-router-dom';
+import { Link, Outlet } from 'react-router-dom';
 import { AuthContext } from '../context/AuthProvider';
 import useAdmin from '../hook/useAdmin';
 import useBuyer from '../hook/useBuyer';
@@ -19,8 +19,6 @@ const DashboardLayout = () => {
                 <input id="dashboard-drawer" type="checkbox" className="drawer-toggle" />
                 <div className="drawer-content">
                     <Outlet />
-                    <label htmlFor="dashboard-drawer" className="btn btn-primary drawer-button lg:hidden">Open drawer</label>
-
                 </div>
                 <div className="drawer-side">
                     <label htmlFor="dashboard-drawer" className="drawer-overlay"></label>
@@ -28,25 +26,25 @@ const DashboardLayout = () => {
                         {/* <!-- Sidebar content here --> */}
                         {
                             user?.emailVerified &&
-                            <li><a>My Orders</a></li>
+                            <li><Link to='/dashboard/myOrders'>My Orders</Link></li>
                         }
                         {
                             isBuyer && <>
-                                <li><a>My Orders</a></li>
+                                <li><Link to='/dashboard/myOrders'>My Orders</Link></li>
                             </>
                         }
                         {
                             isSeller && <>
-                                <li><a>Add A Products</a></li>
-                                <li><a>My Products</a></li>
-                                <li><a>My Buyers</a></li>
+                                <li><Link to='/dashboard/addaproduct'>Add A Products</Link></li>
+                                <li><Link to='/dashboard/myproduct'>My Products</Link></li>
+                                <li><Link to='/dashboard/mybuyers'>My Buyers</Link></li>
                             </>
                         }
                         {
                             isAdmin && <>
-                                <li><a>All Sellers</a></li>
-                                <li><a>All Buyer</a></li>
-                                <li><a>Reported Items</a></li>
+                                <li><Link to='/dashboard/allsellers'>All Sellers</Link></li>
+                                <li><Link to='/dashboard/allbuyers'>All Buyers</Link></li>
+                                <li><Link to='/dashboard/reported'>Reported Items</Link></li>
                             </>
                         }
                     </ul>
