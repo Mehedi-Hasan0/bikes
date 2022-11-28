@@ -73,33 +73,27 @@ const Navbar = () => {
                                 <div className="dropdown dropdown-bottom">
                                     <label tabIndex={0}><Link>Dashboard</Link></label>
                                     <ul tabIndex={0} className="dropdown-content menu p-2 shadow bg-[#181818] rounded-box w-full text-center opacity-100">
-                                        {/* {
-                                            isAdmin && <>
-                                                <li><Link to='/dashboard/allUsers'>All Users</Link></li>
-                                            </>
-                                        }
- */}
                                         {
                                             user?.emailVerified &&
-                                            <li><a>My Orders</a></li>
+                                            <li><Link to='/dashboard/myOrders'>My Orders</Link></li>
                                         }
                                         {
                                             isBuyer && <>
-                                                <li><a>My Orders</a></li>
+                                                <li><Link to='/dashboard/myOrders'>My Orders</Link></li>
                                             </>
                                         }
                                         {
                                             isSeller && <>
-                                                <li><a>Add A Products</a></li>
-                                                <li><a>My Products</a></li>
-                                                <li><a>My Buyers</a></li>
+                                                <li><Link to='/dashboard/addaproduct'>Add A Products</Link></li>
+                                                <li><Link to='/dashboard/myproduct'>My Products</Link></li>
+                                                <li><Link to='/dashboard/mybuyers'>My Buyers</Link></li>
                                             </>
                                         }
                                         {
                                             isAdmin && <>
-                                                <li><a>All Sellers</a></li>
-                                                <li><a>All Buyer</a></li>
-                                                <li><a>Reported Items</a></li>
+                                                <li><Link to='/dashboard/allsellers'>All Sellers</Link></li>
+                                                <li><Link to='/dashboard/allbuyers'>All Buyers</Link></li>
+                                                <li><Link to='/dashboard/reported'>Reported Items</Link></li>
                                             </>
                                         }
                                     </ul>

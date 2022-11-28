@@ -1,16 +1,37 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+import { AuthContext } from '../../../context/AuthProvider';
 
 const AddAProduct = () => {
+    const { user } = useContext(AuthContext);
     const { register, handleSubmit, formState: { errors } } = useForm();
     const navigate = useNavigate();
 
     const handleSubmitProducts = data => {
         console.log(data);
-        toast.success('Congratulations Products is added')
-        navigate('/dashboard/myproduct')
+        const addedBikes = {
+            data,
+            email: user?.email
+        }
+        toast.success('Congratulations Products is added');
+
+        fetch('http://localhost:5000/dashboard/addedproducts', {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(addedBikes)
+        })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data);
+            })
+
+        navigate('/dashboard/myproduct');
+
+
     }
     return (
         <div className=' py-10'>
